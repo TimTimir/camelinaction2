@@ -3,6 +3,8 @@ Camel in Action 2nd Edition
 
 This project hosts the source code for the examples of the [Camel in Action](https://www.manning.com/books/camel-in-action-second-edition) 2nd edition book written by [Claus Ibsen](https://twitter.com/davsclaus) and [Jonathan Anstey](https://twitter.com/jon_anstey). 
 
+Dummy change
+
 ![Camel in Action 2nd ed cover](/docs/images/cia2_cover150.jpg?raw=true)
 
 Table of Contents
