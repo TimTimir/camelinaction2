@@ -7,6 +7,7 @@ public class FileToJMSRoute extends RouteBuilder {
     @Override
     public void configure() {
         from("ftp://rider.com/orders?username=rider&password=secret")
-                .to("jms:incomingOrders");
+                .to("jms:incomingOrders")
+        ;
     }
 }
