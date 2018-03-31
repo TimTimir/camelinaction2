@@ -19,10 +19,8 @@ public class FtpToJMSWithDynamicToTest extends CamelTestSupport {
         CamelContext camelContext = super.createCamelContext();
         
         // connect to embedded ActiveMQ JMS broker
-        ConnectionFactory connectionFactory = 
-            new ActiveMQConnectionFactory("vm://localhost");
-        camelContext.addComponent("jms",
-            JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost");
+        camelContext.addComponent("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
         
         return camelContext;
     }
@@ -41,11 +39,13 @@ public class FtpToJMSWithDynamicToTest extends CamelTestSupport {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true")
                     .setHeader("myDest", constant("incomingOrders"))
-                    .toD("jms:${header.myDest}");
+                    .toD("jms:${header.myDest}")
+                ;
                        
                 // test that our route is working
                 from("jms:incomingOrders")
-                    .to("mock:incomingOrders");                
+                    .to("mock:incomingOrders")
+                ;
             }
         };
     }

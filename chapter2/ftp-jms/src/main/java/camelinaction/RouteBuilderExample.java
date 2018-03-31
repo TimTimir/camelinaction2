@@ -13,7 +13,6 @@ public class RouteBuilderExample {
             @Override
             public void configure() {
                 // try auto complete in your IDE on the line below
-
             }
         });
         context.start();

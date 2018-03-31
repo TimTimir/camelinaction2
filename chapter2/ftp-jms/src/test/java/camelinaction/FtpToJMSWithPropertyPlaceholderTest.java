@@ -20,10 +20,8 @@ public class FtpToJMSWithPropertyPlaceholderTest extends CamelTestSupport {
         CamelContext camelContext = super.createCamelContext();
         
         // connect to embedded ActiveMQ JMS broker
-        ConnectionFactory connectionFactory = 
-            new ActiveMQConnectionFactory("vm://localhost");
-        camelContext.addComponent("jms",
-            JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("vm://localhost");
+        camelContext.addComponent("jms", JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
 
         // setup the properties component to use the test file
         PropertiesComponent prop = camelContext.getComponent("properties", PropertiesComponent.class);
@@ -45,11 +43,13 @@ public class FtpToJMSWithPropertyPlaceholderTest extends CamelTestSupport {
             public void configure() throws Exception {
                 // load file orders from src/data into the JMS queue
                 from("file:src/data?noop=true")
-                    .to("jms:{{myDest}}");
+                    .to("jms:{{myDest}}")
+                ;
 
                 // test that our route is working
                 from("jms:incomingOrders")
-                    .to("mock:incomingOrders");
+                    .to("mock:incomingOrders")
+                ;
             }
         };
     }
